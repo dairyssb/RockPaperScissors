@@ -5,9 +5,126 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script>
+        //needs to randomly select an option for the computer
         function getComputerChoice(){
+            /* have to randomly select Rock, Paper, or Scissors*/
+
+            //use math to generate a random number
+            let randomNumber = Math.floor(Math.random() * 3) + 1;
+            //console.log(randomNumber);
+            //map 1 number to each piece of text between 1 and 3
+            if (randomNumber == 1){
+                //console.log("Comp has chosen: Rock");
+                return "Rock";
+            }
+            else if (randomNumber == 2){
+                //console.log("Comp has chosen: Paper");
+                return "Paper";
+            }
+            else if (randomNumber == 3){
+                //console.log("Comp has chosen: Scissors");
+                return "Scissors";
+            }
+            //use if statements to select the option for the robot
+        }
+
+        function getPlayerChoice(){
+            let playerChoice = prompt("Please choose rock, paper, scissors", "rock");
+            //while (playerChoice != "ROCK" || playerChoice != "PAPER" || playerChoice != "SCISSORS"){
+            //    playerChoice = prompt("Please try again");
+            //}
+            //console.log("Player has chosen: " + playerChoice.toUpperCase());
+            return playerChoice.toUpperCase();
+        }
+
+        //play the game of rock/paper,scissors
+        //make case insensitive for my option
+        function playRound(playerSelection, computerSelection){
+            if(computerSelection == "Rock" && playerSelection == "SCISSORS"){
+                console.log("Computer won by using Rock vs Scissors");
+                console.log("Comp Won!");
+                return "Comp";
+            }
+            else if(computerSelection == "Rock" && playerSelection == "PAPER"){
+                console.log("Computer lost by using Rock vs Paper");
+                console.log("Player Won!");
+                return "Player";
+            }
+            else if(computerSelection == "Rock" && playerSelection == "ROCK"){
+                console.log("Computer and Player tied with double Rock");
+                console.log("Tied");
+                return "Tied";
+            }
+            else if(computerSelection == "Paper" && playerSelection == "SCISSORS"){
+                console.log("Computer lost by using Paper vs Scissors");
+                console.log("Player Won!");
+                return "Player";
+            }
+            else if(computerSelection == "Paper" && playerSelection == "PAPER"){
+                console.log("Computer and Player tied with double Paper");
+                console.log("Tied");
+                return "Tied";
+            }
+            else if(computerSelection == "Paper" && playerSelection == "ROCK"){
+                console.log("Computer won by using Paper vs Rock");
+                console.log("Comp Won!");
+                return "Comp";
+            }
+            else if(computerSelection == "Scissors" && playerSelection == "SCISSORS"){
+                console.log("Computer and Player tied with double Scissors");
+                console.log("Tied");
+                return "Tied";
+            }
+            else if(computerSelection == "Scissors" && playerSelection == "PAPER"){
+                console.log("Computer won by using Scissors vs Paper");
+                console.log("Comp Won!");
+                return "Comp";
+            }
+            else if(computerSelection == "Scissors" && playerSelection == "ROCK"){
+                console.log("Computer lost by using Scissors vs Rock");
+                console.log("Player Won!");
+                return "Player";
+            }
+
+        }
+
+        let playerSelection = "paper";
+        let computerSelection = getComputerChoice();
+
+        function game(){
+            let playerScore = 0;
+            let compScore = 0;
+            let tiedScore = 0;
+            for (let i = 0; i < 5; i++){
+                let playerSelection = getPlayerChoice();
+                let computerSelection = getComputerChoice();
+                let result = playRound(playerSelection,computerSelection)
+
+                if (result == "Player"){
+                    playerScore += 1;
+                }
+                else if (result == "Comp"){
+                    compScore += 1;
+                }
+                else if (result == "Tied"){
+                    tiedScore += 1;
+                }
+            }
+
+            if (playerScore > compScore){
+                console.log("Player won with a score of " + playerScore + " to " + compScore + " . with a tie score of " + tiedScore + ". ");
+            }
+            else if (playerScore < compScore){
+                console.log("Player lost with a score of " + playerScore + " to " + compScore + " . with a tie score of " + tiedScore + ". ");
+            }
+            else if (playerScore == compScore){
+                console.log("Player tied with a score of " + playerScore + " to " + compScore + " . with a tie score of " + tiedScore + ". ");
+            }
             
         }
+
+        game();
+        
     </script>
 </head>
 <body>
